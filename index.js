@@ -7,72 +7,96 @@ async function getData() {
     try {
         let res = await fetch(url)
         let data = await res.json()
-        display(data.results)
+        if (data.results.length == 0) {
+            notFound()
+        }
+        else {
+            if (query != "") {
+                display(data.results)
+                console.log(data.results)
+            }
+            else {
+                const append = document.querySelector('#append');
+                append.innerHTML = null
+            }
+        }
     }
     catch (err) {
         console.log(err)
     }
-
-
 }
 
-let id;
+let personData = []
 
 function display(data) {
-    const resultsDiv = document.querySelector('#resultsDiv');
-    resultsDiv.innerHTML = null
 
-    let results = document.createElement("div")
-    results.setAttribute("id", "results")
-
-    resultsDiv.append(results)
-
-    const charNameBirth = document.createElement('div');
-    charNameBirth.setAttribute("id","charNameBirth")
-
-    const male = document.createElement('div');
-    male.setAttribute("id","male")
+    const append = document.querySelector('#append');
+    append.innerText = null
+    const resultsDiv = document.createElement('div');
+    resultsDiv.setAttribute("id", "resultsDiv")
+    append.append(resultsDiv)
 
     data.forEach(function (elem) {
 
-       
-        // results.append(charNameBirth)
+        let results = document.createElement("div")
+        results.setAttribute("id", "results")
+        resultsDiv.append(results)
 
-        let name = document.createElement("p")
-        name.setAttribute("id","name")
+        results.addEventListener("click", function(){
+            detailFun(elem)
+        })
+        const r1 = document.createElement('div');
+        const name = document.createElement('div');
+        name.setAttribute("id", "name")
         name.innerText = elem.name
 
-        const birth = document.createElement('p');
-        birth.setAttribute("id","birth")
-        birth.innerText = elem.birth_year
+        const birth_year = document.createElement('div');
+        birth_year.innerText = elem.birth_year
+        birth_year.setAttribute("id", "birth_year")
 
-        charNameBirth.append(name,birth)
+        r1.append(name, birth_year)
 
-        const p = document.createElement('p');
-        p.innerText = elem.gender
-        male.append(p)
-        results.append(charNameBirth,male)
+        const gender = document.createElement('div');
+        gender.setAttribute("id", "gender")
+        gender.innerText = elem.gender
+        results.append(r1, gender)
 
     })
 }
 
-// function notFound() {
-//     let result = document.querySelector("#results")
+function detailFun(elem){
+    personData.push(elem)
+    localStorage.setItem("personData",JSON.stringify(personData))
+    window.location.href = "./personDetails.html"
+}
 
-//     let p = document.createElement("p")
-//     p.innerText = "Not Found"
+function notFound() {
+    let query = document.querySelector("#query").value
+    if (query != "") {
+        const append = document.querySelector('#append');
+        append.innerHTML = null
+        const nofoundDiv = document.createElement('div');
+        nofoundDiv.setAttribute("id", "nofoundDiv")
 
-//     result.append(p)
-// }
+        append.append(nofoundDiv)
+        let p = document.createElement("p")
+        p.innerText = "No results found try again..."
+
+        nofoundDiv.append(p)
+    }
+    else {
+        const append = document.querySelector('#append');
+        append.innerHTML = null
+    }
+}
+
+let id;
 
 function debouncing(func, delay) {
-
     if (id) {
         clearTimeout(id)
     }
-
     id = setTimeout(function () {
         func()
     }, delay)
-
 }

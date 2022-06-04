@@ -1,46 +1,90 @@
 body {
-    background-image: url("https://i.gifer.com/1Uli.gif");
+    background-image: url("https://thumbs.gfycat.com/EagerGentleAxolotl-max-1mb.gif");
     background-size: 100% 1000px;
-    /* background:no-repeat; */
 }
 
 #starWarsImg {
-    width: 30%;
+    width: 15%;
     display: block;
     margin: auto;
+    margin-top: 140px;
+}
+
+#center {
+    width: 40%;
+    margin: auto;
+    margin-top: 40px;
+    background-color: rgb(51, 50, 50);
+    border-radius: 20px;
 }
 
 #query {
     display: block;
-    width: 30%;
-    height: 40px;
+    width: 93%;
+    height: 60px;
     margin: auto;
+    background-color: rgb(51, 50, 50);
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    padding-left: 20px;
+    outline: none;
 }
 
 #resultsDiv {
+    border-top: 1px solid #000;
     margin: auto;
-    border: 1px solid white;
+    margin-right: 20px;
+    margin-left: 20px;
     color: white;
+    max-height: 300px;
+    overflow: scroll;
+}
+
+#resultsDiv::-webkit-scrollbar {
+    width: 0px !important;
+}
+
+#resultsDiv {
+    overflow: -moz-scrollbars-none;
+}
+
+#resultsDiv {
+    -ms-overflow-style: none;
 }
 
 #results {
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    grid-template-rows: repeat(400px);
+    width: 100%;
     margin: auto;
-    width: 30%;
-    border: 1px solid red;
-    height: 250px;
-}
-#resuls>div{
-    border: 1px solid white;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    cursor: pointer;
 }
 
-#charNameBirth{
-    /* display: flex; */
-}
-
-/* 
 #name {
-    text-align: center;
-} */
+    margin-left: 10px;
+}
+
+#name:hover {
+    color: yellow;
+}
+
+#birth_year {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+#gender {
+    margin-right: 10px;
+}
+
+#nofoundDiv {
+    margin-left: 20px;
+    margin-right: 20px;
+    border-top: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
