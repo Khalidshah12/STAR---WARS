@@ -1,0 +1,46 @@
+body {
+    background-image: url("https://i.gifer.com/1Uli.gif");
+    background-size: 100% 1000px;
+    /* background:no-repeat; */
+}
+
+#starWarsImg {
+    width: 30%;
+    display: block;
+    margin: auto;
+}
+
+#query {
+    display: block;
+    width: 30%;
+    height: 40px;
+    margin: auto;
+}
+
+#resultsDiv {
+    margin: auto;
+    border: 1px solid white;
+    color: white;
+}
+
+#results {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(400px);
+    margin: auto;
+    width: 30%;
+    border: 1px solid red;
+    height: 250px;
+}
+#resuls>div{
+    border: 1px solid white;
+}
+
+#charNameBirth{
+    /* display: flex; */
+}
+
+/* 
+#name {
+    text-align: center;
+} */
